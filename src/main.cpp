@@ -8,6 +8,11 @@
 /*----------------------------------------------------------------------------*/
 
 // ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Drivetrain           drivetrain    2, 5, 9, 7, 1   
+// Lift                 motor_group   10, 11          
+// BackLift             motor         3               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
