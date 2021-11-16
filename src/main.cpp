@@ -12,8 +12,9 @@
 // [Name]               [Type]        [Port(s)]
 // Drivetrain           drivetrain    2, 5, 9, 7, 1   
 // Lift                 motor_group   10, 11          
-// BackLift             motor         3               
 // Controller1          controller                    
+// BackLift             motor         20              
+// RingIntake           motor         19              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
