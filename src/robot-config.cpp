@@ -16,19 +16,18 @@ motor rightMotorB = motor(PORT7, ratio18_1, false);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 inertial DrivetrainInertial = inertial(PORT1);
 smartdrive Drivetrain = smartdrive(LeftDriveSmart, RightDriveSmart, DrivetrainInertial, 299.24, 320, 40, mm, 1.6666666666666667);
-motor LiftMotorA = motor(PORT10, ratio36_1, false);
-motor LiftMotorB = motor(PORT11, ratio36_1, true);
-motor_group Lift = motor_group(LiftMotorA, LiftMotorB);
 controller Controller1 = controller(primary);
 motor BackLift = motor(PORT20, ratio36_1, false);
 motor RingIntake = motor(PORT19, ratio6_1, false);
+motor LiftMotorA = motor(PORT10, ratio36_1, false);
+motor LiftMotorB = motor(PORT11, ratio36_1, false);
+motor_group Lift = motor_group(LiftMotorA, LiftMotorB);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;
 // define variables used for controlling motors based on controller inputs
 bool Controller1LeftShoulderControlMotorsStopped = true;
-bool Controller1RightShoulderControlMotorsStopped = true;
 bool Controller1XBButtonsControlMotorsStopped = true;
 bool DrivetrainLNeedsToBeStopped_Controller1 = true;
 bool DrivetrainRNeedsToBeStopped_Controller1 = true;
@@ -82,29 +81,17 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(forward);
       }
-      // check the ButtonL1/ButtonL2 status to control BackLift
+      // check the ButtonL1/ButtonL2 status to control Lift
       if (Controller1.ButtonL1.pressing()) {
-        BackLift.spin(forward);
+        Lift.spin(forward);
         Controller1LeftShoulderControlMotorsStopped = false;
       } else if (Controller1.ButtonL2.pressing()) {
-        BackLift.spin(reverse);
+        Lift.spin(reverse);
         Controller1LeftShoulderControlMotorsStopped = false;
       } else if (!Controller1LeftShoulderControlMotorsStopped) {
-        BackLift.stop();
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
-        Controller1LeftShoulderControlMotorsStopped = true;
-      }
-      // check the ButtonR1/ButtonR2 status to control Lift
-      if (Controller1.ButtonR1.pressing()) {
-        Lift.spin(forward);
-        Controller1RightShoulderControlMotorsStopped = false;
-      } else if (Controller1.ButtonR2.pressing()) {
-        Lift.spin(reverse);
-        Controller1RightShoulderControlMotorsStopped = false;
-      } else if (!Controller1RightShoulderControlMotorsStopped) {
         Lift.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
-        Controller1RightShoulderControlMotorsStopped = true;
+        Controller1LeftShoulderControlMotorsStopped = true;
       }
       // check the ButtonX/ButtonB status to control RingIntake
       if (Controller1.ButtonX.pressing()) {
