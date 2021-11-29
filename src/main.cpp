@@ -11,10 +11,10 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // Drivetrain           drivetrain    2, 5, 9, 7, 1   
-// Controller1          controller                    
+// Lift                 motor_group   10, 11          
 // BackLift             motor         20              
 // RingIntake           motor         19              
-// Lift                 motor_group   10, 11          
+// Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
