@@ -35,6 +35,69 @@ competition Competition;
 /*  function is only called once after the V5 has been powered on and        */
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
+void make_button(int x, int y, int tx, int ty, char* title, vex::color c, int w = 80, int h = 40) {
+    Brain.Screen.drawRectangle(x,y,w,h,c);
+    Brain.Screen.setFillColor(c);
+    Brain.Screen.printAt(x+tx,y+ty,title);
+}
+
+bool is_clicked(int bx, int by, int w = 80, int h = 40) {
+    int x = Brain.Screen.xPosition();
+    int y = Brain.Screen.yPosition();
+    int rx = x - bx;
+    int ry = y - by;
+    return rx >  0 && rx < w && ry >  0 && ry < h;
+}
+
+// global variable
+bool isBuleSide = false; // true = blue
+bool isFarField = false; // true = far field
+bool isAutoEnable = true; // true = enable
+
+void disabled(){
+    while (!Competition.isEnabled()) {
+        Brain.Screen.setFillColor(color::black);
+        Brain.Screen.printAt(10,45,"Color:");
+        Brain.Screen.printAt(10,95,"Side:");
+        Brain.Screen.printAt(50,140,"Skip auton");
+        if (isBuleSide) {
+            make_button(80,20,25,27,(char*)"RED",color::red);
+        } 
+        
+        else {
+            make_button(80,20,20,27,(char*)"BLUE",color::blue);
+        }
+        if (isFarField) {
+            make_button(80,70,25,27,(char*)"LEFT",color::orange);
+        } 
+        
+        else {
+            make_button(80,70,20,27,(char*)"RIGHT",color::purple);
+        }
+        if (isAutoEnable) {
+            make_button(10,120,15,15,(char*)"",color::black,30,30);
+        } 
+        
+        else {
+            make_button(10,120,15,15,(char*)"",color::green,30,30);
+            Brain.Screen.setFillColor(color::white);
+            Brain.Screen.drawLine(80,20,160,60);
+            Brain.Screen.drawLine(80,70,160,110);
+        }
+        while (!Brain.Screen.pressing() && !Competition.isEnabled()) task::sleep(50);
+        while (Brain.Screen.pressing() && !Competition.isEnabled()) task::sleep(50);
+        if (Competition.isEnabled()) break;
+        
+        if (is_clicked(10,120,120)) {
+          
+            isAutoEnable = !isAutoEnable;
+        }else if (is_clicked(80,20) && isAutoEnable) {
+            isBuleSide = !isBuleSide;
+        } else if (is_clicked(80,70) && isAutoEnable) {
+            isFarField = !isFarField;
+        }
+    }
+}
 
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
@@ -100,6 +163,9 @@ int main() {
 
   // Prevent main from exiting with an infinite loop.
   while (true) {
-    wait(100, msec);
+    // wait(100, msec);
+    while(Competition.isEnabled()) vex::task::sleep(50);
+        disabled();
+        Brain.Screen.clearScreen();
   }
 }
