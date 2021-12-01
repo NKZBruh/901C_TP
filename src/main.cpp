@@ -14,7 +14,9 @@
 // Lift                 motor_group   10, 11          
 // BackLift             motor         20              
 // RingIntake           motor         19              
-// Controller1          controller                    
+// Controller1          controller  
+// Pneumatic1           pneumatic     A
+// Pneumatic2           pneumatic     B
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
