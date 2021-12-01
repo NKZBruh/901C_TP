@@ -12,8 +12,8 @@
 // [Name]               [Type]        [Port(s)]
 // Drivetrain           drivetrain    2, 5, 9, 7, 1   
 // Lift                 motor_group   10, 11          
-// BackLift             motor         20              
-// RingIntake           motor         19              
+// BackLift             motor         19              
+// RingIntake           motor         18              
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
