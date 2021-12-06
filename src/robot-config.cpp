@@ -108,8 +108,8 @@ int rc_auto_loop_function_Controller1() {
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1RightShoulderControlMotorsStopped = true;
       }
-      // check the ButtonX/ButtonB status to control RingIntake
-      if (Controller1.ButtonX.pressing()) {
+      // check the ButtonA/ButtonB status to control RingIntake
+      if (Controller1.ButtonA.pressing()) {
         RingIntake.spin(forward);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonB.pressing()) {
