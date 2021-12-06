@@ -19,7 +19,7 @@ smartdrive Drivetrain = smartdrive(LeftDriveSmart, RightDriveSmart, DrivetrainIn
 motor LiftMotorA = motor(PORT10, ratio36_1, false);
 motor LiftMotorB = motor(PORT11, ratio36_1, true);
 motor_group Lift = motor_group(LiftMotorA, LiftMotorB);
-motor BackLift = motor(PORT20, ratio36_1, false);
+motor BackLift = motor(PORT18, ratio36_1, false);
 motor RingIntake = motor(PORT19, ratio36_1, false);
 controller Controller1 = controller(primary);
 vex::pneumatics pneumatic1(Brain.ThreeWirePort.A);
