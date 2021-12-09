@@ -12,7 +12,7 @@
 // [Name]               [Type]        [Port(s)]
 // Drivetrain           drivetrain    2, 5, 9, 7, 1   
 // Lift                 motor_group   10, 11          
-// BackLift             motor         20              
+// BackLift             motor         18              
 // RingIntake           motor         19              
 // Controller1          controller  
 // Pneumatic1           pneumatic     A
