@@ -16,8 +16,8 @@ motor rightMotorB = motor(PORT7, ratio18_1, false);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 inertial DrivetrainInertial = inertial(PORT1);
 smartdrive Drivetrain = smartdrive(LeftDriveSmart, RightDriveSmart, DrivetrainInertial, 299.24, 320, 40, mm, 1.6666666666666667);
-motor LiftMotorA = motor(PORT10, ratio36_1, false);
-motor LiftMotorB = motor(PORT11, ratio36_1, true);
+motor LiftMotorA = motor(PORT10, ratio6_1, false);
+motor LiftMotorB = motor(PORT11, ratio6_1, true);
 motor_group Lift = motor_group(LiftMotorA, LiftMotorB);
 motor BackLift = motor(PORT18, ratio36_1, false);
 motor RingIntake = motor(PORT19, ratio36_1, false);
@@ -110,7 +110,7 @@ int rc_auto_loop_function_Controller1() {
       }
       // check the ButtonA/ButtonB status to control RingIntake
       if (Controller1.ButtonA.pressing()) {
-        RingIntake.spin(forward);
+        RingIntake.spin(forward,100,velocityUnits::rpm);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonB.pressing()) {
         RingIntake.spin(reverse);
