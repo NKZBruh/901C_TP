@@ -12,7 +12,7 @@
 // [Name]               [Type]        [Port(s)]
 // Drivetrain           drivetrain    2, 5, 9, 7, 1   
 // Lift                 motor_group   10, 11          
-// BackLift             motor         18              
+// BackLift             motor         20              
 // RingIntake           motor         19              
 // Controller1          controller  
 // Pneumatic1           pneumatic     A
@@ -20,6 +20,8 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
+//#include "robot-config.h"
+#include "general-config.h"
 
 using namespace vex;
 
@@ -107,7 +109,6 @@ void pre_auton(void) {
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
-  BackLift.setStopping(brakeType::hold);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -124,7 +125,72 @@ void autonomous(void) {
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
+
+  //includes proxy lines
+  
+  int squareLength = 12;
+
+  if(isBuleSide && isFarField){
+    driveForward(squareLength);
+    turn(90);
+    driveForward(squareLength);
+    turn(-90);
+    driveForward(squareLength*2);
+    //activatePostIntake();
+    driveForward(squareLength);
+    turn(-90);
+    //activateRingIntake();
+    driveForward(squareLength);
+    turn(-90);
+    driveForward(squareLength*3);
+    //deactivatePostIntake();
+    //deactivateRingIntake();
+    turn(-90);
+    driveForward(squareLength*5);
+    turn(-90);
+    //activatePostIntake();
+    driveForward(squareLength*2);
+    turn(90);
+    driveForward(squareLength);
+    turn(90);
+    //activateRingIntake();
+    driveForward(squareLength*2);
+    //deactivatePostIntake();
+    //deactivateRingIntake();
+    }
+  else if(isBuleSide){
+    driveForward(squareLength*2);
+    //activatePostIntake();
+    driveForward(squareLength);
+    turn(90);
+    driveForward(squareLength);
+    //activateRingIntake();
+    turn(90);
+    driveForward(squareLength);
+    turn(90);
+    driveForward(squareLength);
+    turn(-90);
+    //deactivatePostIntake();
+    //deactivateRingIntake();
+    turn(90);
+    //activateRingIntake();
+    driveForward(squareLength*3);
+    turn(90);
+    //activatePostIntake();
+    driveForward(squareLength);
+    turn(90);
+    driveForward(squareLength*3);
+    turn(90);
+    driveForward(3);
+    //deactivatePostIntake();
+    //deactivateRingIntake();
+  }
+    for(int n = 0; n<4; n++){
+      turn(360);
+      //style points cause we're awesome
+      }
 }
+
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
