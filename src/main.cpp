@@ -130,7 +130,15 @@ void autonomous(void) {
   
   int squareLength = 12;
 
+<<<<<<< HEAD
   if(isBuleSide && isFarField){
+=======
+  if(isBuleSide && !isFarField){
+    
+  }
+
+  /*if(isBuleSide && isFarField){
+>>>>>>> 8263b6083a8ba47d696a171742455a4a42f1d185
     driveForward(squareLength);
     turn(90);
     driveForward(squareLength);
@@ -184,7 +192,11 @@ void autonomous(void) {
     driveForward(3);
     //deactivatePostIntake();
     //deactivateRingIntake();
+<<<<<<< HEAD
   }
+=======
+  }*/
+>>>>>>> 8263b6083a8ba47d696a171742455a4a42f1d185
     for(int n = 0; n<4; n++){
       turn(360);
       //style points cause we're awesome
