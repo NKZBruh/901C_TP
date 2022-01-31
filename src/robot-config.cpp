@@ -95,8 +95,9 @@ int rc_auto_loop_function_Controller1(){
         BackLift.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1LeftShoulderControlMotorsStopped = true;
+        BackLift.setBrake(hold);
       }
-      // check the ButtonR1/ButtonR2 status to control Lift
+      // check the ButtonR1/ButtonR2 status to control Lift 
       if (Controller1.ButtonR1.pressing()) {
         Lift.spin(forward);
         Controller1RightShoulderControlMotorsStopped = false;
@@ -109,7 +110,7 @@ int rc_auto_loop_function_Controller1(){
         Controller1RightShoulderControlMotorsStopped = true;
       }
       // check the ButtonX/ButtonB status to control RingIntake
-      if (Controller1.ButtonX.pressing()) {
+      if (Controller1.ButtonA.pressing()) {
         RingIntake.spin(forward, 70, vex::velocityUnits::pct);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonB.pressing()) {
@@ -119,6 +120,7 @@ int rc_auto_loop_function_Controller1(){
         RingIntake.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1XBButtonsControlMotorsStopped = true;
+      
       }
       if(Controller1.ButtonLeft.pressing()){
         pneumatic1.open();
