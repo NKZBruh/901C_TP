@@ -95,6 +95,7 @@ int rc_auto_loop_function_Controller1() {
         BackLift.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1LeftShoulderControlMotorsStopped = true;
+
       }
       // check the ButtonR1/ButtonR2 status to control Lift
       if (Controller1.ButtonR1.pressing()) {
@@ -109,7 +110,7 @@ int rc_auto_loop_function_Controller1() {
         Controller1RightShoulderControlMotorsStopped = true;
       }
       // check the ButtonX/ButtonB status to control RingIntake
-      if (Controller1.ButtonX.pressing()) {
+      if (Controller1.ButtonA.pressing()) {
         RingIntake.spin(forward);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonB.pressing()) {
