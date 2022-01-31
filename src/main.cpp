@@ -20,7 +20,7 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
-//#include "robot-config.h"
+#include "robot-config.h"
 #include "general-config.h"
 
 using namespace vex;
@@ -70,9 +70,11 @@ void disabled(){
         
         else {
             make_button(80,20,20,27,(char*)"BLUE",color::blue);
+            isBuleSide = true;
         }
         if (isFarField) {
             make_button(80,70,25,27,(char*)"LEFT",color::orange);
+            isFarField = true;
         } 
         
         else {
@@ -126,19 +128,43 @@ void autonomous(void) {
   // Insert autonomous user code here.
   // ..........................................................................
 
-  //includes proxy lines
+  //includes proxy lines of code
   
   int squareLength = 12;
 
-<<<<<<< HEAD
-  if(isBuleSide && isFarField){
-=======
-  if(isBuleSide && !isFarField){
-    
+  if(isBuleSide && !isFarField /*&& is15Second */){
+
+
+    //NADIR NOTE: Auton turning 100% functional, but movement speed decays rapidly.
+    // Moreover, driving speed is accurate, but distance values appear to be incorrent (possibly using cm instead of in?)
+
+    //if(blue && right)
+
+    //while(true){
+      //Brain.Screen.printAt(50, 50, "running auton fuckily");
+    //}
+
+    //start point E1
+
+    driveForward(squareLength);
+    turn(360);
+    driveForward(squareLength);
+
+    //activatefrontalPostIntake(); 
+    //frontalPostIntakeLift(3);
+    /*turn(-45);
+    //activateRingIntake();
+    driveForward(-squareLength*0.5);
+    turn(45);
+    driveForward(-squareLength);
+    turn(-90);
+    //deactivateFrontalPostIntake();
+    //deactivateRingIntake();*/
   }
 
+
+  //FAILED 1 MINUTE AUTON SEQUENCES COMMENTED BELOW
   /*if(isBuleSide && isFarField){
->>>>>>> 8263b6083a8ba47d696a171742455a4a42f1d185
     driveForward(squareLength);
     turn(90);
     driveForward(squareLength);
@@ -192,15 +218,11 @@ void autonomous(void) {
     driveForward(3);
     //deactivatePostIntake();
     //deactivateRingIntake();
-<<<<<<< HEAD
-  }
-=======
   }*/
->>>>>>> 8263b6083a8ba47d696a171742455a4a42f1d185
-    for(int n = 0; n<4; n++){
+    /*for(int n = 0; n<4; n++){
       turn(360);
       //style points cause we're awesome
-      }
+      }*/
 }
 
 
@@ -209,7 +231,7 @@ void autonomous(void) {
 /*                              User Control Task                            */
 /*                                                                           */
 /*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
+/*  a VEX Competition.                                                       */ qqqQqQqq
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/

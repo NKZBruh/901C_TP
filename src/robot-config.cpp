@@ -5,7 +5,7 @@ using signature = vision::signature;
 using code = vision::code;
 
 // A global instance of brain used for printing to the V5 Brain screen
-brain  Brain;
+vex::brain Brain;
 
 // VEXcode device constructors
 motor leftMotorA = motor(PORT2, ratio18_1, true);
@@ -19,7 +19,7 @@ smartdrive Drivetrain = smartdrive(LeftDriveSmart, RightDriveSmart, DrivetrainIn
 motor LiftMotorA = motor(PORT10, ratio36_1, false);
 motor LiftMotorB = motor(PORT11, ratio36_1, true);
 motor_group Lift = motor_group(LiftMotorA, LiftMotorB);
-motor BackLift = motor(PORT20, ratio36_1, false);
+motor BackLift = motor(PORT18, ratio36_1, false);
 motor RingIntake = motor(PORT19, ratio6_1, false);
 controller Controller1 = controller(primary);
 vex::pneumatics pneumatic1(Brain.ThreeWirePort.A);
@@ -36,7 +36,7 @@ bool DrivetrainLNeedsToBeStopped_Controller1 = true;
 bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 
 // define a task that will handle monitoring inputs from Controller1
-int rc_auto_loop_function_Controller1() {
+int rc_auto_loop_function_Controller1(){
   // process the controller input every 20 milliseconds
   // update the motors based on the input values
   while(true) {
@@ -110,10 +110,10 @@ int rc_auto_loop_function_Controller1() {
       }
       // check the ButtonX/ButtonB status to control RingIntake
       if (Controller1.ButtonX.pressing()) {
-        RingIntake.spin(forward);
+        RingIntake.spin(forward, 70, vex::velocityUnits::pct);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonB.pressing()) {
-        RingIntake.spin(reverse);
+        RingIntake.spin(reverse, 70, vex::velocityUnits::pct);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (!Controller1XBButtonsControlMotorsStopped) {
         RingIntake.stop();
